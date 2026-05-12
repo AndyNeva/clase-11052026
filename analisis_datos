@@ -1,0 +1,38 @@
+# Análisis de datos simple con Python
+# Librerías estándar de ciencia de datos
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# --- 1. Crear un dataset de ejemplo ---
+datos = {
+    "estudiante": ["Ana", "Luis", "María", "Carlos", "Sofía"],
+    "nota_parcial": [85, 72, 90, 68, 95],
+    "nota_final":   [88, 75, 92, 70, 97],
+}
+
+df = pd.DataFrame(datos)
+print("Dataset:")
+print(df)
+
+# --- 2. Estadísticas básicas ---
+print("\nEstadísticas descriptivas:")
+print(df[["nota_parcial", "nota_final"]].describe())
+
+# --- 3. Promedio por estudiante ---
+df["promedio"] = (df["nota_parcial"] + df["nota_final"]) / 2
+print("\nPromedio por estudiante:")
+print(df[["estudiante", "promedio"]])
+
+# --- 4. Visualización ---
+plt.figure(figsize=(8, 4))
+plt.bar(df["estudiante"], df["promedio"], color="steelblue")
+plt.title("Promedio de notas por estudiante")
+plt.xlabel("Estudiante")
+plt.ylabel("Promedio")
+plt.ylim(0, 100)
+plt.tight_layout()
+plt.savefig("promedios.png")
+plt.show()
+print("\nGráfico guardado como 'promedios.png'")
